@@ -1,13 +1,17 @@
 import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
+import logo from "../assets/logo.png";
 
 const Header = () => {
   return (
     <header>
       <Navbar bg="dark" expand="md" variant="dark">
         <Container>
-          <Navbar.Brand href="/">Kheng-Shop</Navbar.Brand>
+          <Navbar.Brand href="/">
+            <img src={logo} alt="Kheng-Shop" />
+            Kheng-Shop
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
