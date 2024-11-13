@@ -1,0 +1,16 @@
+{
+  "name": "online-shop",
+  "version": "1.0.0",
+  "description": "ecommerce app with mern stack",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "author": "Kheng",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.1",
+    "online-shop": "file:"
+  }
+}
