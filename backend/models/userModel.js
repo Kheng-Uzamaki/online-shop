@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
+const { Schema } = mongoose; // Destructure Schema from mongoose
+
 const userSchema = new Schema(
   {
     name: {
@@ -17,8 +19,7 @@ const userSchema = new Schema(
     },
     isAdmin: {
       type: Boolean,
-      default: false,
-      required: true,
+      default: false, // `required: true` is unnecessary since a default value is provided
     },
   },
   {
