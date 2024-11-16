@@ -9,6 +9,9 @@ import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 dotenv.config();
 
 const app = express();
+// body Paser middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 connectDB(); // connect to database
 
