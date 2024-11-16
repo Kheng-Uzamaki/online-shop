@@ -16,7 +16,7 @@ export const updateCart = (state) => {
 
   // Calculate total price (items price + shipping price + tax price)
   state.totalPrice = (
-    Number(state.itemsPricet) +
+    Number(state.itemsPrice) +
     Number(state.shippingPrice) +
     Number(state.taxPrice)
   ).toFixed(2);
