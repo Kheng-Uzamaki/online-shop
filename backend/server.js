@@ -6,7 +6,7 @@ import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import cookieParser from "cookie-parser";
-
+import orderRoutes from "./routes/orderRoutes.js";
 dotenv.config();
 
 const app = express();
@@ -28,6 +28,8 @@ app.get("/", (req, res) => {
 app.use("/api/products", productRoutes); // use product route
 
 app.use("/api/users", userRoutes); // use user route
+
+app.use("/api/orders", orderRoutes); // use order route
 
 app.use(notFound); // middleware for handling 404 errors
 
