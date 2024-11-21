@@ -18,7 +18,12 @@ app.use(cookieParser()); // middleware for parsing cookies from requests
 
 connectDB(); // connect to database
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000", // Adjust to match your frontend's URL
+    credentials: true, // Allow credentials to be sent
+  })
+);
 const port = process.env.PORT || 8000;
 
 app.get("/", (req, res) => {
