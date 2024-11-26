@@ -83,7 +83,9 @@ const ProductEditScreen = () => {
       toast.success(res.message);
       setImage(res.image);
     } catch (err) {
-      toast.error(err?.data?.message || err.error);
+        
+        toast.error(err?.data?.message || err.error);
+  
     }
   };
 
