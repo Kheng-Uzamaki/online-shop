@@ -1,3 +1,4 @@
+import path from "path";
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -8,6 +9,7 @@ import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import cookieParser from "cookie-parser";
 import orderRoutes from "./routes/orderRoutes.js";
 dotenv.config();
+import uploadRoutes from "./routes/uploadRoutes.js";
 
 const app = express();
 // body Paser middleware
@@ -30,15 +32,23 @@ app.get("/", (req, res) => {
   res.send("Welcome to Kheng-Shop API");
 });
 
+
+
 app.use("/api/products", productRoutes); // use product route
 
 app.use("/api/users", userRoutes); // use user route
 
 app.use("/api/orders", orderRoutes); // use order route
 
+app.use("/api/uploads", uploadRoutes); // use upload route
+
 app.get("/api/config/paypal", (req, res) => {
   res.send({ clientId: process.env.PAYPAL_CLIENT_ID });
 });
+
+const __dirname = path.resolve();
+
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 app.use(notFound); // middleware for handling 404 errors
 
