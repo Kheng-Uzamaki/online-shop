@@ -4,7 +4,6 @@ import {
   Col,
   ListGroup,
   Image,
-  Form,
   Button,
   Card,
 } from "react-bootstrap";
@@ -19,7 +18,7 @@ import {
   useDeliverOrderMutation,
 } from "../slices/ordersApiSlice";
 import { toast } from "react-toastify";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
 const OrderScreen = () => {
@@ -39,7 +38,6 @@ const OrderScreen = () => {
 
   const {
     data: paypal,
-    isLoading: loadingPayPal,
     error: errorPayPal,
   } = useGetPayPalClientIdQuery();
 
@@ -63,11 +61,11 @@ const OrderScreen = () => {
     }
   }, [order, paypal, paypalDispatch, errorPayPal]);
 
-  async function onApproveTest() {
-    await payOrder({ orderId, details: { payer: {} } });
-    toast.success("Order Paid Successfully");
-    refetch();
-  }
+  // async function onApproveTest() {
+  //   await payOrder({ orderId, details: { payer: {} } });
+  //   toast.success("Order Paid Successfully");
+  //   refetch();
+  // }
 
   const onApprove = (data, actions) => {
     return actions.order.capture().then(async function (details) {
