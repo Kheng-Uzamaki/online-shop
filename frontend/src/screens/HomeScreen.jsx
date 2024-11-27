@@ -6,6 +6,7 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import Paginate from "../components/Paginate";
 import ProductCarousel from "../components/ProductCarousel";
+
 const HomeScreen = () => {
   const { pageNumber = 1, keyword } = useParams();
   const { data, isLoading, error } = useGetProductsQuery({
@@ -31,6 +32,7 @@ const HomeScreen = () => {
         </Message>
       ) : (
         <>
+         
           <h1>Latest Products</h1>
           <Row>
             {data.products.map((product) => (

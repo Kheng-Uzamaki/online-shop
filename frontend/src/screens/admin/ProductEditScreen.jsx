@@ -83,9 +83,7 @@ const ProductEditScreen = () => {
       toast.success(res.message);
       setImage(res.image);
     } catch (err) {
-        
-        toast.error(err?.data?.message || err.error);
-  
+      toast.error(err?.data?.message || err.error);
     }
   };
 
@@ -96,6 +94,8 @@ const ProductEditScreen = () => {
       </Link>
       <FormContainer>
         <h1>Edit Product</h1>
+        {loadingUpdate && <Loader />}
+
         {isLoading ? (
           <Loader />
         ) : error ? (
@@ -136,6 +136,7 @@ const ProductEditScreen = () => {
                 onChange={uploadFileHandler}
               />
             </Form.Group>
+            {loadingUpload && <Loader />}
 
             <Form.Group controlId="brand" className="my-2">
               <Form.Label>Brand</Form.Label>
