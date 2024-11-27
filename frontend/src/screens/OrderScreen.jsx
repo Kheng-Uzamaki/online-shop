@@ -1,12 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import {
-  Row,
-  Col,
-  ListGroup,
-  Image,
-  Button,
-  Card,
-} from "react-bootstrap";
+import { Row, Col, ListGroup, Image, Button, Card } from "react-bootstrap";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 
@@ -36,10 +29,7 @@ const OrderScreen = () => {
 
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
 
-  const {
-    data: paypal,
-    error: errorPayPal,
-  } = useGetPayPalClientIdQuery();
+  const { data: paypal, error: errorPayPal } = useGetPayPalClientIdQuery();
 
   const { userInfo } = useSelector((state) => state.auth);
 
@@ -111,7 +101,7 @@ const OrderScreen = () => {
   return isLoading ? (
     <Loader />
   ) : error ? (
-    <Message />
+    <Message>{error?.data?.message || error.error}</Message>
   ) : (
     <>
       <h1>Order {order._id}</h1>
