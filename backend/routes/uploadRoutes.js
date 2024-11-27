@@ -5,35 +5,45 @@ import multer from "multer";
 const router = express.Router();
 
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
+  destination(req, file, cb) {
     cb(null, "uploads/");
   },
-  filename: (req, file, cb) => {
+  filename(req, file, cb) {
     cb(
       null,
-      `${file.fieldname}-$${Date.now()}${path.extname(file.originalname)}`
+      `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
     );
   },
 });
 
-function checkFileType(file, cb) {
-  const filetypes = /jpeg|jpg|png/;
+function fileFilter(req, file, cb) {
+  const filetypes = /jpe?g|png|webp/;
+  const mimetypes = /image\/jpe?g|image\/png|image\/webp/;
+
   const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-  const mimetype = filetypes.test(file.mimetype);
-  if (mimetype && extname) {
-    return cb(null, true);
+  const mimetype = mimetypes.test(file.mimetype);
+
+  if (extname && mimetype) {
+    cb(null, true);
   } else {
-    cb(new Error("Only JPG, JPEG, PNG images are allowed!"));
+    cb(new Error("Images only!"), false);
   }
 }
 
-const upload = multer({
-  storage,
-});
-router.post("/", upload.single("image"), (req, res) => {
-  res.send({
-    message: "Image uploaded successfully",
-    image: `${req.file.path}`,
+const upload = multer({ storage, fileFilter });
+const uploadSingleImage = upload.single("image");
+
+router.post("/", (req, res) => {
+  uploadSingleImage(req, res, function (err) {
+    if (err) {
+      return res.status(400).send({ message: err.message });
+    }
+
+    res.status(200).send({
+      message: "Image uploaded successfully",
+      image: `/${req.file.path}`,
+    });
   });
 });
+
 export default router;

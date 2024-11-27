@@ -29,6 +29,8 @@ const ProductScreen = () => {
     error,
   } = useGetProductDetailsQuery(productId);
 
+  console.log(product)
+
   const addToCartHandler = () => {
     dispatch(
       addToCart({
