@@ -28,12 +28,6 @@ app.use(
 );
 const port = process.env.PORT || 8000;
 
-app.get("/", (req, res) => {
-  res.send("Welcome to Kheng-Shop API");
-});
-
-
-
 app.use("/api/products", productRoutes); // use product route
 
 app.use("/api/users", userRoutes); // use user route
@@ -47,8 +41,19 @@ app.get("/api/config/paypal", (req, res) => {
 });
 
 const __dirname = path.resolve();
-
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "frontend/build")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+  });
+} else {
+  app.get("/", (req, res) => {
+    res.send("Welcome to Kheng-Shop API");
+  });
+}
 
 app.use(notFound); // middleware for handling 404 errors
 
