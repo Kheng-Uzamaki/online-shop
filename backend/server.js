@@ -22,7 +22,7 @@ connectDB(); // connect to database
 
 app.use(
   cors({
-    origin: "http://localhost:3000", // Adjust to match your frontend's URL
+    origin: "https://online-shop-8goi.onrender.com/", // Adjust to match your frontend's URL
     credentials: true, // Allow credentials to be sent
   })
 );
