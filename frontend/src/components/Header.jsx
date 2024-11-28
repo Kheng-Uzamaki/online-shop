@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Navbar, Nav, Container, Badge, NavDropdown } from "react-bootstrap";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
-import logo from "../assets/logo.png";
+import k_logo from "../assets/k_logo.png";
 import { LinkContainer } from "react-router-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../slices/usersApiSlice";
@@ -29,11 +29,23 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar bg="dark" expand="md" variant="dark">
+      <Navbar
+        expand="md"
+        sticky="top"
+        style={{
+          backgroundColor: "#153448",
+          color: "#fff",
+        }}
+        variant="dark"
+      >
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>
-              <img src={logo} alt="Kheng-Shop" />
+              <img src={k_logo} alt="Kheng-Shop" style={{
+                height: "50px",
+                marginRight: "10px",
+                cursor: "pointer",
+              }} />
               Kheng-Shop
             </Navbar.Brand>
           </LinkContainer>

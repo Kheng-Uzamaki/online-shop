@@ -51,3 +51,34 @@ table th {
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
 }
+.pagination-custom .page-item .page-link {
+  padding: 0.6rem 1rem;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+  font-weight: 500;
+  margin-right: 0.5rem;
+}
+
+.pagination-custom .page-item.active .page-link {
+  color: white;
+
+}
+
+.pagination-custom .page-item .page-link:hover {
+  background-color: #e9ecef;
+  transform: scale(1.1);
+}
+
+.pagination-custom .page-item.disabled .page-link {
+  color: #6c757d;
+  pointer-events: none;
+  background-color: transparent;
+}
+
+.hover-image {
+  transform: scale(1); /* Default state */
+}
+
+.hover-image:hover {
+  transform: scale(1.1); /* Enlarge on hover */
+}
